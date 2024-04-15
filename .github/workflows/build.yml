@@ -1,6 +1,7 @@
 name: Build and Commit
 
 on:
+  workflow-dispatch:
   push:
     branches:
       - main
