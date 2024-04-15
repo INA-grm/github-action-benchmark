@@ -12,4 +12,3 @@
 target/
 jmh-result.json
 .env
-/dist
