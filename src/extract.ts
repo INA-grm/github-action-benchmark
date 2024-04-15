@@ -121,7 +121,7 @@ async function getCommit(githubToken?: string, ref?: string): Promise<Commit> {
 
 function extractCatch2Result(output: string): BenchmarkResult[] {
     // Example:
-    
+
     // benchmark name samples       iterations    estimated <-- Start benchmark section
     //                mean          low mean      high mean <-- Ignored
     //                std dev       low std dev   high std dev <-- Ignored
@@ -131,11 +131,12 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
     //                11.719 us      7.847 us     17.747 us <-- Ignored
     const reTestCaseStart = /^benchmark name +samples +iterations +estimated/;
     const reBenchmarkStart = /(\d+) +(\d+) +(?:\d+(\.\d+)?) (?:ns|ms|us|s)\s*$/;
-    const reBenchmarkValues = /^ +(\d+(?:\.\d+)?) (ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s)/;
+    const reBenchmarkValues =
+        /^ +(\d+(?:\.\d+)?) (ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s)/;
     const reSeparator = /^-+$/;
 
     const lines = output.split(/\r?\n/g);
-    let ret: BenchmarkResult[] = [];
+    const ret: BenchmarkResult[] = [];
 
     while (lines.length > 0) {
         const line = lines.shift();
@@ -162,7 +163,9 @@ function extractCatch2Result(output: string): BenchmarkResult[] {
                             valueUnit: meanMatch[2],
                             range: parseFloat(stdDevMatch[1]),
                             rangeUnit: stdDevMatch[2],
-                            extra: sampleIterationMatches ? `samples: ${sampleIterationMatches[1]}, iterations: ${sampleIterationMatches[2]}` : 'No sample/iteration data'
+                            extra: sampleIterationMatches
+                                ? `samples: ${sampleIterationMatches[1]}, iterations: ${sampleIterationMatches[2]}`
+                                : 'No sample/iteration data',
                         });
                     }
                 }
