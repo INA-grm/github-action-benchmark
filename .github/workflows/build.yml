@@ -1,0 +1,39 @@
+name: Build and Commit
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.ts'
+      - 'package.json'
+      - 'tsconfig.json'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build TypeScript
+        run: npm run build  # Make sure this script exists in your package.json
+
+      - name: Commit and push if necessary
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "GitHub Actions"
+          git add -f dist/
+          git commit -m "Automated commit of built JS files" || exit 0  # Exit gracefully if no changes
+          git push
