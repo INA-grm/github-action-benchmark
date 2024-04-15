@@ -56,17 +56,17 @@ describe('buildComment', () => {
                     {
                         value: 0,
                         name: 'TestBench<1>',
-                        unit: 'testUnit',
+                        valueUnit: 'testUnit',
                     },
                     {
                         value: 1,
                         name: 'TestBench<2>',
-                        unit: 'testUnit',
+                        valueUnit: 'testUnit',
                     },
                     {
                         value: -1,
                         name: 'TestBench<3>',
-                        unit: 'testUnit',
+                        valueUnit: 'testUnit',
                     },
                 ],
             },
@@ -88,17 +88,17 @@ describe('buildComment', () => {
                     {
                         value: 0,
                         name: 'TestBench<1>',
-                        unit: 'testUnit',
+                        valueUnit: 'testUnit',
                     },
                     {
                         value: 0,
                         name: 'TestBench<2>',
-                        unit: 'testUnit',
+                        valueUnit: 'testUnit',
                     },
                     {
                         value: 0,
                         name: 'TestBench<3>',
-                        unit: 'testUnit',
+                        valueUnit: 'testUnit',
                     },
                 ],
             },
@@ -142,17 +142,17 @@ describe('buildComment', () => {
                     {
                         value: 0,
                         name: 'TestBench<1>',
-                        unit: 'testUnit',
+                        valueUnit: 'testUnit',
                     },
                     {
                         value: 0,
                         name: 'TestBench<2>',
-                        unit: 'testUnit',
+                        valueUnit: 'testUnit',
                     },
                     {
                         value: 0,
                         name: 'TestBench<3>',
-                        unit: 'testUnit',
+                        valueUnit: 'testUnit',
                     },
                 ],
             },
@@ -174,17 +174,17 @@ describe('buildComment', () => {
                     {
                         value: 0,
                         name: 'TestBench<1>',
-                        unit: 'testUnit',
+                        valueUnit: 'testUnit',
                     },
                     {
                         value: 1,
                         name: 'TestBench<2>',
-                        unit: 'testUnit',
+                        valueUnit: 'testUnit',
                     },
                     {
                         value: -1,
                         name: 'TestBench<3>',
-                        unit: 'testUnit',
+                        valueUnit: 'testUnit',
                     },
                 ],
             },
