@@ -63,7 +63,7 @@ function validateDataJson(data: DataJson) {
                 throw new Error(`Benchmark date is not correct: ${date} v.s. ${now}`);
             }
             for (const bench of benches) {
-                const { name, value, unit, range, extra } = bench;
+                const { name, value, valueUnit, range, rangeUnit, extra } = bench;
                 const json = JSON.stringify(bench);
                 if (!name) {
                     throw new Error(`Benchmark result name is invalid: ${name} (${json})`);
@@ -71,11 +71,14 @@ function validateDataJson(data: DataJson) {
                 if (typeof value !== 'number' || isNaN(value)) {
                     throw new Error(`Benchmark result value is invalid: ${value} (${json})`);
                 }
-                if (typeof unit !== 'string') {
-                    throw new Error(`Benchmark result unit is invalid: ${unit} (${json})`);
+                if (typeof valueUnit !== 'string') {
+                    throw new Error(`Benchmark result valueUnit is invalid: ${valueUnit} (${json})`);
                 }
-                if (range && typeof range !== 'string') {
+                if (typeof range !== 'number' || isNaN(range)) {
                     throw new Error(`Benchmark result range is invalid: ${range} (${json})`);
+                }
+                if (rangeUnit && typeof rangeUnit !== 'string') {
+                    throw new Error(`Benchmark result rangeUnit is invalid: ${rangeUnit} (${json})`);
                 }
                 if (extra && typeof extra !== 'string') {
                     throw new Error(`Benchmark result extra is invalid: ${extra} (${json})`);
@@ -174,7 +177,7 @@ function validateBenchmarkResultMod<T>(diff: Diff<T>, expectedBenchName: string,
         for (const addedBench of added.benches) {
             for (const prevBench of suite.benches) {
                 if (prevBench.name === addedBench.name) {
-                    if (prevBench.unit !== addedBench.unit) {
+                    if (prevBench.valueUnit !== addedBench.valueUnit) {
                         throw new Error(
                             `Unit is different between previous benchmark and newly added benchmark: ${JSON.stringify(
                                 prevBench,
