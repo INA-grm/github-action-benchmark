@@ -96,7 +96,7 @@ function extractCatch2Result(output) {
     const reBenchmarkValues = /^ +(\d+(?:\.\d+)?) (ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s)/;
     const reSeparator = /^-+$/;
     const lines = output.split(/\r?\n/g);
-    let ret = [];
+    const ret = [];
     while (lines.length > 0) {
         const line = lines.shift();
         if (!line)
@@ -124,7 +124,9 @@ function extractCatch2Result(output) {
                             valueUnit: meanMatch[2],
                             range: parseFloat(stdDevMatch[1]),
                             rangeUnit: stdDevMatch[2],
-                            extra: sampleIterationMatches ? `samples: ${sampleIterationMatches[1]}, iterations: ${sampleIterationMatches[2]}` : 'No sample/iteration data'
+                            extra: sampleIterationMatches
+                                ? `samples: ${sampleIterationMatches[1]}, iterations: ${sampleIterationMatches[2]}`
+                                : 'No sample/iteration data',
                         });
                     }
                 }
