@@ -149,20 +149,6 @@ function strVal(b) {
     }
     return s;
 }
-function toMs(value, unit) {
-    if (unit === undefined)
-        return 0;
-    switch (unit.toLowerCase()) {
-        case 'us':
-            return value / 1e3;
-        case 'ms':
-            return value;
-        case 's':
-            return value * 1e3;
-        default:
-            return 0;
-    }
-}
 function commentFooter() {
     var _a;
     const repoMetadata = getCurrentRepoMetadata();
@@ -475,11 +461,8 @@ async function handleSummary(benchName, currBench, prevBench, config) {
 function getRatio(tool, prev, current) {
     if (prev.value === 0 && current.value === 0)
         return 1;
-    const prevMs = toMs(prev.value, prev.valueUnit);
-    const currentMs = toMs(current.value, prev.valueUnit);
-    console.log('write.ts/getRatio: ', prevMs, currentMs, biggerIsBetter(tool) ? prevMs / currentMs : currentMs / prevMs);
     return biggerIsBetter(tool)
-        ? prevMs / currentMs // e.g. current=100, prev=200
-        : currentMs / prevMs; // e.g. current=200, prev=100
+        ? prev.value / current.value // e.g. current=100, prev=200
+        : current.value / prev.value; // e.g. current=200, prev=100
 }
 //# sourceMappingURL=write.js.map
