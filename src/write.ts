@@ -585,7 +585,7 @@ function getRatio(tool: ToolType, prev: BenchmarkResult, current: BenchmarkResul
     if (prev.value === 0 && current.value === 0) return 1;
     const prevMs = toMs(prev.value, prev.valueUnit);
     const currentMs = toMs(current.value, prev.valueUnit);
-    console.log("{getRatio} write.ts: ", prevMs, currentMs, biggerIsBetter(tool) ? prevMs / currentMs : currentMs / prevMs);
+    console.log('{getRatio} write.ts: ', prevMs, currentMs, biggerIsBetter(tool) ? prevMs / currentMs : currentMs / prevMs);
 
     return biggerIsBetter(tool)
         ? prevMs / currentMs // e.g. current=100, prev=200
