@@ -478,7 +478,7 @@ function getRatio(tool, prev, current) {
         return 1;
     const prevMs = toMs(prev.value, prev.valueUnit);
     const currentMs = toMs(current.value, prev.valueUnit);
-    console.log('write.ts/getRatio:: ', 'biggerIsBetter:', biggerIsBetter(tool), 'prev.value:', prev.value, 'prev.valueUnit:', prev.valueUnit, 'current.value:', current.value, 'current.valueUnit:', current.valueUnit, 'ratio:', prevMs, /', currentMs, biggerIsBetter(tool) ? prevMs / currentMs : currentMs / prevMs);
+    console.log('write.ts/getRatio:: ', 'biggerIsBetter:', biggerIsBetter(tool), 'prev.value:', prev.value, 'prev.valueUnit:', prev.valueUnit, 'current.value:', current.value, 'current.valueUnit:', current.valueUnit, 'ratio:', prevMs, '/', currentMs, biggerIsBetter(tool) ? prevMs / currentMs : currentMs / prevMs);
     return biggerIsBetter(tool)
         ? prevMs / currentMs // e.g. current=100, prev=200
         : currentMs / prevMs; // e.g. current=200, prev=100
