@@ -451,10 +451,10 @@ async function writeBenchmark(bench, config) {
     // Put this after `git push` for reducing possibility to get conflict on push. Since sending
     // comment take time due to API call, do it after updating remote branch.
     if (prevBench === null) {
-        console.log(prevBench);
         core.debug('Alert check was skipped because previous benchmark result was not found');
     }
     else {
+        console.log(bench, prevBench);
         await handleComment(name, bench, prevBench, config);
         await handleAlert(name, bench, prevBench, config);
         await handleSummary(name, bench, prevBench, config);
