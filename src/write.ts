@@ -162,16 +162,16 @@ function strVal(b: BenchmarkResult): string {
 function toMs(value: number, unit: string) {
     if (unit === undefined) return 0;
     switch (unit.toLowerCase()) {
-      case "us":
-        return value / 1e3;
-      case "ms":
-        return value;
-      case "s":
-        return value * 1e3;
-      default:
-        return 0;
+        case 'us':
+            return value / 1e3;
+        case 'ms':
+            return value;
+        case 's':
+            return value * 1e3;
+        default:
+            return 0;
     }
-  }
+}
 
 function commentFooter(): string {
     const repoMetadata = getCurrentRepoMetadata();
@@ -585,6 +585,7 @@ function getRatio(tool: ToolType, prev: BenchmarkResult, current: BenchmarkResul
     if (prev.value === 0 && current.value === 0) return 1;
     const prevMs = toMs(prev.value, prev.valueUnit);
     const currentMs = toMs(current.value, prev.valueUnit);
+    console.log("{getRatio} write.ts: ", prevMs, currentMs, biggerIsBetter(tool) ? prevMs / currentMs : currentMs / prevMs);
 
     return biggerIsBetter(tool)
         ? prevMs / currentMs // e.g. current=100, prev=200
