@@ -584,7 +584,7 @@ async function handleSummary(benchName: string, currBench: Benchmark, prevBench:
 function getRatio(tool: ToolType, prev: BenchmarkResult, current: BenchmarkResult) {
     if (prev.value === 0 && current.value === 0) return 1;
     const prevMs = toMs(prev.value, prev.valueUnit);
-    const currentMs = toMs(current.value, prev.valueUnit);
+    const currentMs = toMs(current.value, current.valueUnit);
     console.log(
         '{getRatio} write.ts: ',
         prevMs,
