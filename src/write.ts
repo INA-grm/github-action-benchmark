@@ -567,10 +567,26 @@ async function handleSummary(benchName: string, currBench: Benchmark, prevBench:
     await summary.write();
 }
 
+function toMs(value: number, unit: string) {
+    if (unit === undefined) return 0;
+    switch (unit.toLowerCase()) {
+      case "us":
+        return value / 1e3;
+      case "ms":
+        return value;
+      case "s":
+        return value * 1e3;
+      default:
+        return 0;
+    }
+  }
+
 function getRatio(tool: ToolType, prev: BenchmarkResult, current: BenchmarkResult) {
     if (prev.value === 0 && current.value === 0) return 1;
+    const prevMs = toMs(prev.value, prev.valueUnit);
+    const currentMs = toMs(current.value, prev.valueUnit);
 
     return biggerIsBetter(tool)
-        ? prev.value / current.value // e.g. current=100, prev=200
-        : current.value / prev.value; // e.g. current=200, prev=100
+        ? prevMs / currentMs // e.g. current=100, prev=200
+        : currentMs / prevMs; // e.g. current=200, prev=100
 }
