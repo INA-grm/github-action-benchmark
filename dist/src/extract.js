@@ -92,8 +92,8 @@ function extractCatch2Result(output) {
     //                43.186 us     41.402 us     46.246 us <-- Actual benchmark data
     //                11.719 us      7.847 us     17.747 us <-- Ignored
     const reTestCaseStart = /^benchmark name +samples +iterations +(estimated|est run time)/;
-    const reBenchmarkStart = /(\d+) +(\d+) +(?:\d+(\.\d+)?) (?:ns|ms|us|s)\s*$/;
-    const reBenchmarkValues = /^ +(\d+(?:\.\d+)?) (ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s)/;
+    const reBenchmarkStart = /(\d+) +(\d+) +(?:\d+(\.\d+)?) (?:ns|ms|us|s|m)\s*$/;
+    const reBenchmarkValues = /^ +(\d+(?:\.\d+)?) (ns|us|ms|s|m) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s|m) +(?:\d+(?:\.\d+)?) (?:ns|us|ms|s|m)/;
     const reEmptyLine = /^\s*$/;
     const reSeparator = /^-+$/;
     const lines = output.split(/\r?\n/g);

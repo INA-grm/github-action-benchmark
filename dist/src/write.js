@@ -159,6 +159,8 @@ function toMs(value, unit) {
             return value;
         case 's':
             return value * 1e3;
+        case 'm':
+            return value * 1e3 * 60;
         default:
             return 0;
     }
