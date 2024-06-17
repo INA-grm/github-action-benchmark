@@ -35,7 +35,7 @@ function getCommitFromPullRequestPayload(pr) {
         author: user,
         committer: user,
         id,
-        message: pr.title,
+        message: pr.title + ", " + id,
         timestamp: pr.head.repo.updated_at,
         url: `${pr.html_url}/commits/${id}`,
     };
